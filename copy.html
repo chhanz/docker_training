@@ -1,0 +1,77 @@
+<head>
+<title> OpenSourceConsulting Training </title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<body style="background-color:white;">
+
+<div class="container">
+  <br>
+</div>
+<div class="container">
+  <br>
+</div>
+<div class="container">
+  <br>
+</div>
+<div class="container">
+<div class="alert alert-success" role="alert">
+	<h4 class="alert-heading"><i class="fas fa-user-lock"></i>   	Welcome!!</h4>
+	  <p>OpenSourceConsulting Training Example Page</p>
+<hr>
+<b> Docker Registry URL </br></b>
+# wget https://download.docker.com/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo
+ </br></p>
+
+<hr>
+<b> Detail DockerFile </b> </br>
+
+<textarea cols="90" rows="7">
+# cat dockerfile
+FROM httpd:latest
+MAINTAINER chhan <chhan@osci.kr>
+
+RUN echo "<html><body><h1>Docker File Test Page</h1></body></html>" > /usr/local/apache2/htdocs/index.html
+
+EXPOSE 80 
+</textarea>
+<hr>
+<b> Docker-compose URL </br></b>
+# curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ </br></p>
+
+<hr>
+
+<hr>
+<b> Detail docker-compose File</b> </br>
+
+<textarea cols="90" rows="25">
+version: '3.3'
+
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - /var/lib/mysql:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: passwordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "80:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+</textarea>
